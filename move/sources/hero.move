@@ -28,7 +28,6 @@ public fun create_hero(name: String, image_url: String, power: u64, ctx: &mut Tx
     };
 
     transfer::transfer(hero, tx_context::sender(ctx));
-
     
     let metadata = HeroMetadata {
         id: object::new(ctx),

@@ -26,16 +26,20 @@ public struct ArenaCompleted has copy, drop {
 
 // ========= FUNCTIONS =========
 
-// public fun create_arena(hero: Hero, ctx: &mut TxContext) {
+public fun create_arena(hero: Hero, ctx: &mut TxContext) {
+    let arena = Arena {
+        id: object::new(ctx),
+        warrior: hero,
+        owner: tx_context::sender(ctx),
+    };
 
-//     // TODO: Create an arena object
-//         // Hints:
-//         // Use object::new(ctx) for unique ID
-//         // Set warrior field to the hero parameter
-//         // Set owner to ctx.sender()
-//     // TODO: Emit ArenaCreated event with arena ID and timestamp (Don't forget to use ctx.epoch_timestamp_ms(), object::id(&arena))
-//     // TODO: Use transfer::share_object() to make it publicly tradeable
-// }
+    event::emit(ArenaCreated {
+        arena_id: object::id(&arena),
+        timestamp: tx_context::epoch_timestamp_ms(ctx),
+    });
+
+    transfer::share_object(arena);
+}
 
 // #[allow(lint(self_transfer))]
 // public fun battle(hero: Hero, arena: Arena, ctx: &mut TxContext) {

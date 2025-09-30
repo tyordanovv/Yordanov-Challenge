@@ -18,7 +18,7 @@ import {
 import { useState } from "react";
 import { useNetworkVariable } from "../networkConfig";
 import { Hero } from "../types/hero";
-import { transferHero } from "../utility/helpers/transfer_hero";
+import { transferObject } from "../utility/helpers/transfer_object";
 import { listHero } from "../utility/marketplace/list_hero";
 import { createArena } from "../utility/arena/create_arena";
 import { RefreshProps } from "../types/props";
@@ -76,7 +76,7 @@ export function OwnedObjects({ refreshKey, setRefreshKey }: RefreshProps) {
 
     setIsTransferring((prev) => ({ ...prev, [heroId]: true }));
 
-    const tx = transferHero(heroId, address);
+    const tx = transferObject(heroId, address);
     signAndExecute(
       { transaction: tx },
       {

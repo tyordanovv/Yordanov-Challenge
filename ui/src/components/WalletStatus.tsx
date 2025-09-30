@@ -2,7 +2,7 @@ import { useCurrentAccount, useSuiClientQuery, useSignAndExecuteTransaction, use
 import { Flex, Text, Card, Badge, Button, TextField } from "@radix-ui/themes";
 import { useState } from "react";
 import { useNetworkVariable } from "../networkConfig";
-import { transferAdminCap } from "../utility/helpers/transfer_admin_cap";
+import { transferObject } from "../utility/helpers/transfer_object";
 
 export function WalletStatus() {
   const account = useCurrentAccount();
@@ -48,7 +48,7 @@ export function WalletStatus() {
     
     setIsTransferringAdmin(true);
     
-    const tx = transferAdminCap(adminCapId, transferAdminAddress);
+    const tx = transferObject(adminCapId, transferAdminAddress);
     signAndExecute(
       { transaction: tx },
       {

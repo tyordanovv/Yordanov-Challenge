@@ -1,6 +1,7 @@
 import { useSuiClientQueries } from "@mysten/dapp-kit";
 import { Flex, Heading, Text, Card, Badge, Grid } from "@radix-ui/themes";
 import { useNetworkVariable } from "../networkConfig";
+import { formatAddress, formatPrice, formatTimestamp } from "../lib/utils";
 
 export default function EventsHistory() {
   const packageId = useNetworkVariable("packageId");
@@ -64,18 +65,6 @@ export default function EventsHistory() {
     { data: battleCreatedEvents, isPending: isBattleCreatedPending },
     { data: battleCompletedEvents, isPending: isBattleCompletedPending },
   ] = eventQueries;
-
-  const formatTimestamp = (timestamp: string) => {
-    return new Date(Number(timestamp)).toLocaleString();
-  };
-
-  const formatAddress = (address: string) => {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
-  };
-
-  const formatPrice = (price: string) => {
-    return (Number(price) / 1_000_000_000).toFixed(2);
-  };
 
   if (
     isListedPending ||

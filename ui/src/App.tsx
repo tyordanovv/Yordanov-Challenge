@@ -7,6 +7,7 @@ import { OwnedObjects } from "./components/OwnedObjects";
 import SharedObjects from "./components/SharedObjects";
 import Arenas from "./components/Arenas";
 import EventsHistory from "./components/EventsHistory";
+import { CreateRandomHero } from "./components/CreateRandomHero";
 
 function App() {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -45,9 +46,14 @@ function App() {
           <Separator size="4" />
 
           {/* Create Hero Section */}
-          <Box>
-            <CreateHero refreshKey={refreshKey} setRefreshKey={setRefreshKey} />
-          </Box>
+          <Flex gap="4">
+            <Box style={{ flex: 1 }}>
+              <CreateHero refreshKey={refreshKey} setRefreshKey={setRefreshKey} />
+            </Box>
+            <Box style={{ flex: 1 }}>
+              <CreateRandomHero refreshKey={refreshKey} setRefreshKey={setRefreshKey} />
+            </Box>
+          </Flex>
 
           <Separator size="4" />
 

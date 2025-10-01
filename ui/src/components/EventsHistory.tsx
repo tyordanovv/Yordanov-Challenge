@@ -5,6 +5,7 @@ import { formatAddress, formatPrice, formatTimestamp } from "../lib/utils";
 
 export default function EventsHistory() {
   const packageId = useNetworkVariable("packageId");
+  console.log("Package ID in EventsHistory:", packageId);
 
   const eventQueries = useSuiClientQueries({
     queries: [
